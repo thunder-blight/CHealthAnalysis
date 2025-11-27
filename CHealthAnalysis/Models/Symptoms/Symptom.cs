@@ -2,14 +2,24 @@ namespace CHealthAnalysis.Models.Symptoms
 {
     public class Symptom
     {
-        // A property holding the symptom name
+        // Property holding the symptom name
         public string Name { get; }
-    
-        // Ensures all symptoms have a consistent read-only name
+
+        // Constructor for setting the name
         protected Symptom(string name)
         {
-            Name = name.ToLower();
+            // Store name in lowercase for consistency
+            Name = name.ToLower(); 
         }
 
-    }   
+        // Optional evaluation method
+        public virtual string Evaluate() 
+        {
+            // Default: no evaluation
+            return null;
+        }
+
+        // Optional input collection, does nothing by default
+        public virtual void CollectInputFromUser() { } 
+    }
 }
