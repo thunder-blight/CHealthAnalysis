@@ -1,22 +1,60 @@
-namespace CHealthAnalysis.Models.Symptoms
+using System;
 
+namespace CHealthAnalysis.Models.Symptoms
 {
-    // Derived class for a symptom that has a temperature value
     public class FeverSymptom : Symptom
     {
-        // Property to store the user's temperature
-        public float Temperature { get; set; }
+        // Stores user's fever temperature
+        public float Temperature { get; private set; }
 
-        // Constructor - requires a temperature value
-        public FeverSymptom(float temperature) : base("fever")
+        // Constructor calls base with symptom name
+        public FeverSymptom() : base("fever") { }
+
+        // Override input collection
+        public override void CollectInputFromUser()
         {
-            Temperature = temperature;
+            // Loop until valid input is entered
+            while (true)
+            {
+                // Prompt user
+                Console.Write("Enter your fever temperature in Celsius: ");
+                // Read user input
+                string input = Console.ReadLine();
+
+                // Check if input is a number
+                if (float.TryParse(input, out float temp))
+                {
+                    // Validate temperature is realistic
+                    if (temp < 30f || temp > 45f)
+                    {
+                        // Error message
+                        Console.WriteLine("Temperature out of realistic range. Try again.");
+                        // Loop again
+                        continue;
+                    }
+
+                    // Store valid temperature
+                    Temperature = temp;
+                    // Exit loop
+                    break; 
+                }
+                else
+                {
+                    // Input was not a number
+                    Console.WriteLine("Invalid input. Please enter a number."); 
+                }
+            }
         }
-        
-        // Method to check if it qualifies as a fever
-        public bool IsFever()
+
+        // Override evaluation method
+        public override string Evaluate()
         {
-            return Temperature > 37.5f;
+            // Low/normal temperature
+            if (Temperature <= 37.5f) return "No fever";
+            // Moderate fever
+            if (Temperature <= 39f) return "Mild fever";
+            // High temperature
+            return "High fever"; 
         }
-    }   
+    }
 }
