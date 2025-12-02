@@ -38,7 +38,7 @@ namespace  CHealthAnalysis.Models.Symptoms
             if (string.IsNullOrEmpty(Severity))
                 return "";
 
-            return $"Sorry to hear you've been dealing with a {Severity} headache.";
+            return $"Sorry to hear you've been dealing with a {Severity} headache for the last {DaysSinceStart} days.";
         }
     }
 }
