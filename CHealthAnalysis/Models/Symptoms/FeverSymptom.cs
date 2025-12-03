@@ -11,11 +11,13 @@ namespace CHealthAnalysis.Models.Symptoms
         public FeverSymptom() : base("fever") { }
 
         // Override input collection
-        public override void CollectInputFromUser()
+        public override void CollectFromUser()
         {
             // Loop until valid input is entered
             while (true)
             {
+                base.CollectFromUser();
+                
                 // Prompt user
                 Console.Write("Enter your fever temperature in Celsius: ");
                 // Read user input
