@@ -7,7 +7,7 @@ namespace CHealthAnalysis.Models.Symptoms
         // Name of the symptom
         public string Name { get; }
         
-        protected Symptom(string name)
+        public Symptom(string name)
         {
             Name = name.ToLower();
         }
@@ -35,6 +35,10 @@ namespace CHealthAnalysis.Models.Symptoms
             }
         }
 
-        public virtual string Evaluate() => null;
+        public virtual string Evaluate()
+        {
+            return
+                $"Sorry to hear you have been suffering from {Name} for the last {DaysSinceStart} days" ;
+        }
     }
 }

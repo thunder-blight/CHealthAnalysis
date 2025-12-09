@@ -62,9 +62,9 @@ namespace CHealthAnalysis.Models.Symptoms
         
         public override string Evaluate()
         {
-            return 
-                $"Your dysentery problem sounds bad {StoolConsistency} poo, {Frequency} times a day is painful." +
-                $" Sorry to hear that."
+            return
+                $"Your dysentery problem sounds bad {StoolConsistency} poo, {Frequency} times a day is painful. " +
+                $"Sorry to hear that.";
         }
     }
    

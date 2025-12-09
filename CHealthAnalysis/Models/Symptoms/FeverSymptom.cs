@@ -51,12 +51,10 @@ namespace CHealthAnalysis.Models.Symptoms
         // Override evaluation method
         public override string Evaluate()
         {
-            // Low/normal temperature
-            if (Temperature <= 37.5f) return "No fever";
-            // Moderate fever
-            if (Temperature <= 39f) return "Mild fever";
-            // High temperature
-            return "High fever"; 
+            if (Temperature == null)
+                return "";
+            
+            return $"Sorry to hear you've been running temperature of {Temperature} since the last {DaysSinceStart} days.";
         }
     }
 }
