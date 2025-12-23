@@ -1,17 +1,24 @@
 using System;
+using CHealthAnalysis.Common;
 
 namespace CHealthAnalysis.Models.Symptoms
 {
     public class Symptom
     {
         // Name of the symptom
-        public string Name { get; }
+        public string SymptomName { get; }
         
         public Symptom(string name)
         {
-            Name = name.ToLower();
+            
+            SymptomName = name;
         }
-        
+
+        public Symptom(SymptomType mySymptom)
+        {
+            throw new NotImplementedException();
+        }
+
         // When the symptom started
         public DateTime DateStarted { get; private set; }
         
@@ -22,7 +29,7 @@ namespace CHealthAnalysis.Models.Symptoms
         {
             while (true)
             {
-                Console.Write($"When did your {Name} start? (YYYY-MM-DD): ");
+                Console.Write($"When did your {SymptomName} start? (YYYY-MM-DD): ");
                 string input = Console.ReadLine().Trim();
             
                 if (DateTime.TryParse(input, out DateTime date))
@@ -38,7 +45,7 @@ namespace CHealthAnalysis.Models.Symptoms
         public virtual string Evaluate()
         {
             return
-                $"Sorry to hear you have been suffering from {Name} for the last {DaysSinceStart} days" ;
+                $"Sorry to hear you have been suffering from {SymptomName} for the last {DaysSinceStart} days" ;
         }
     }
 }

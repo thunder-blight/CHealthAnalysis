@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CHealthAnalysis.Common;
 using CHealthAnalysis.Models.Symptoms;
 
 namespace CHealthAnalysis
@@ -22,32 +23,31 @@ namespace CHealthAnalysis
 
                 if (input == "done")
                     break;
+                
+                var canParse = Enum.TryParse(input ?? string.Empty, out SymptomType mySymptom);
 
-                if (string.IsNullOrWhiteSpace(input))
+                if (!canParse)
                 {
                     Console.WriteLine("Please enter a valid symptom.\n");
                     continue;
                 }
 
-                Symptom symptom;
+                Symptom symptom = new Symptom(mySymptom);
 
-                switch (input)
+                switch (mySymptom)
                 {
-                    case "fever":
+                    case SymptomType.Fever:
                         symptom = new FeverSymptom();
                         break;
                     
-                    case "headache":
+                    case SymptomType.HeadAche:
                         symptom = new HeadAcheSymptom();
                         break;
                     
-                    case "dysentery":
+                    case SymptomType.Dysentery:
                         symptom = new DysenterySymptom();
                         break;
                     
-                    default:
-                        symptom = new Symptom(input);
-                        break;
                 }
                 
                 symptom.CollectFromUser();
@@ -62,7 +62,7 @@ namespace CHealthAnalysis
 
             foreach (var symptom in symptoms)
             {
-                Console.WriteLine($"Symptom: {symptom.Name}");
+                Console.WriteLine($"Symptom: {symptom.SymptomName}");
                 
                 string evaluation = symptom.Evaluate();
                 
