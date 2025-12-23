@@ -1,25 +1,44 @@
+using System;
+
 namespace CHealthAnalysis.Models.Symptoms
 {
     public class Symptom
     {
-        // Property holding the symptom name
+        // Name of the symptom
         public string Name { get; }
-
-        // Constructor for setting the name
-        protected Symptom(string name)
+        
+        public Symptom(string name)
         {
-            // Store name in lowercase for consistency
-            Name = name.ToLower(); 
+            Name = name.ToLower();
+        }
+        
+        // When the symptom started
+        public DateTime DateStarted { get; private set; }
+        
+        // // Automatically calculates how many days since the symptom began
+        public int DaysSinceStart => (int)(DateTime.Now - DateStarted).TotalDays;
+        
+        public virtual void CollectFromUser()
+        {
+            while (true)
+            {
+                Console.Write($"When did your {Name} start? (YYYY-MM-DD): ");
+                string input = Console.ReadLine().Trim();
+            
+                if (DateTime.TryParse(input, out DateTime date))
+                {
+                    DateStarted = date;
+                    break;
+                }
+                
+                Console.WriteLine("Invalid date format. Please try again. (e.g., 2025-01-30");
+            }
         }
 
-        // Optional evaluation method
-        public virtual string Evaluate() 
+        public virtual string Evaluate()
         {
-            // Default: no evaluation
-            return null;
+            return
+                $"Sorry to hear you have been suffering from {Name} for the last {DaysSinceStart} days" ;
         }
-
-        // Optional input collection, does nothing by default
-        public virtual void CollectInputFromUser() { } 
     }
 }
