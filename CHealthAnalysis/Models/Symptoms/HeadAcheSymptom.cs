@@ -1,6 +1,6 @@
 using System;
 
-namespace  CHealthAnalysis.Models.Symptoms
+namespace CHealthAnalysis.Models.Symptoms
 {
     public class HeadAcheSymptom : Symptom
     {
