@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CHealthAnalysis.Models.Diseases;
+namespace CHealthAnalysis.BusinessLayer.Models.Diseases;
 
 public interface IDisease
 {

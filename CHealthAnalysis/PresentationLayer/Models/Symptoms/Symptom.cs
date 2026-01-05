@@ -1,7 +1,7 @@
 using System;
 using CHealthAnalysis.Common;
 
-namespace CHealthAnalysis.Models.Symptoms
+namespace CHealthAnalysis.PresentationLayer.Models.Symptoms
 {
     public class Symptom
     {
