@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CHealthAnalysis.Common;
-using CHealthAnalysis.Models.Symptoms;
+using CHealthAnalysis.PresentationLayer.Models.Symptoms;
 
 namespace CHealthAnalysis
 {

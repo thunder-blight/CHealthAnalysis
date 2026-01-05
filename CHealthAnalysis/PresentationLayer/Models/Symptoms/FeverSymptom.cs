@@ -1,6 +1,4 @@
-using System;
-
-namespace CHealthAnalysis.Models.Symptoms
+namespace CHealthAnalysis.PresentationLayer.Models.Symptoms
 {
     public class FeverSymptom : Symptom
     {
